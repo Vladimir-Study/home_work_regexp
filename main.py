@@ -1,4 +1,6 @@
 from pprint3x import pprint
+from decorators import logger
+from datetime import datetime
 # читаем адресную книгу в формате CSV в список contacts_list
 import csv
 import re
@@ -9,6 +11,7 @@ with open("phonebook_raw.csv", encoding='utf-8') as f:
 
 
 # TODO 1: выполните пункты 1-3 ДЗ
+@logger
 def template_list(work_list):
     result = [[]]
     for stroke in work_list:
