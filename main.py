@@ -1,5 +1,7 @@
+import os
+
 from pprint3x import pprint
-from decorators import logger
+from decorators import logger, logger_with_save_path
 from datetime import datetime
 # читаем адресную книгу в формате CSV в список contacts_list
 import csv
@@ -11,7 +13,10 @@ with open("phonebook_raw.csv", encoding='utf-8') as f:
 
 
 # TODO 1: выполните пункты 1-3 ДЗ
-@logger
+path_save = "D:\\Netology tutorial\\Python продвинутый"
+
+
+@logger_with_save_path(path_save)
 def template_list(work_list):
     result = [[]]
     for stroke in work_list:
@@ -34,9 +39,6 @@ def template_list(work_list):
     return result
 
 
-formatted_list = template_list(contacts_list)
-
-
 def create_list_to_write(source_list):
     write_list = []
     person_list = []
@@ -56,13 +58,15 @@ def create_list_to_write(source_list):
     return write_list
 
 
-ready_write_list = create_list_to_write(formatted_list)
+# ready_write_list = create_list_to_write(formatted_list)
 
 # TODO 2: сохраните получившиеся данные в другой файл
 # код для записи файла в формате CSV
 
-with open("phonebook.csv", "w") as f:
-    datawriter = csv.writer(f, delimiter=',')
-    # Вместо contacts_list подставьте свой список
-    datawriter.writerows(ready_write_list)
+# with open("phonebook.csv", "w") as f:
+#     datawriter = csv.writer(f, delimiter=',')
+#     Вместо contacts_list подставьте свой список
+    # datawriter.writerows(ready_write_list)
 
+if __name__ == '__main__':
+    formatted_list = template_list(contacts_list)
